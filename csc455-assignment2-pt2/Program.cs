@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace csc455_assignment2_pt2
 {
@@ -29,6 +30,13 @@ namespace csc455_assignment2_pt2
                 } else if(userInput == "3")
                 {
                     printRandomDino();
+                } else if (userInput == "4")
+                {
+                    randomStringAction();
+                }
+                else
+                {
+                    Console.WriteLine("Input a valid integer number between 1 and 4.");
                 }
 
                 Console.WriteLine("Would you like to try again?  Y/N");
@@ -87,13 +95,92 @@ namespace csc455_assignment2_pt2
             dinosaurNames.Add("Apatosaurus");
             dinosaurNames.Add("Dilophosaurus");
 
-            //Orders the list by name
+            //  Orders the list by name
             dinosaurNames = dinosaurNames.OrderBy(p => p).ToList();
 
             Random randomNum = new Random();
             int randomDino = randomNum.Next(0, 10);
 
             Console.WriteLine("Here is a random dinosaur name: {0}", dinosaurNames[randomDino]);
+        }
+
+        //  Performs a random string action
+        static void randomStringAction()
+        {
+            Console.WriteLine("Input a string of your choice.");
+            string userString = Console.ReadLine();
+
+            Random randomNum = new Random();
+            int randomAction = randomNum.Next(1, 11);
+
+            //  If statements to perform a random action on a string the user inputs
+            if (randomAction == 1)
+            {
+                //  Reverses the string
+                char[] reverseArray = userString.ToCharArray();
+                Array.Reverse(reverseArray);
+                string reversedString = new string(reverseArray);
+                Console.Write("Your string in reverse is: {0}", reversedString);
+            }
+            else if (randomAction == 2)
+            {
+                //  Outputs length of string
+                Console.Write("The length of your string is: {0}", userString.Length);
+            }
+            else if (randomAction == 3)
+            {
+                //  Ouputs half the string
+                Console.WriteLine("Half of your string is: {0}", userString.Substring(0, userString.Length / 2));
+            }
+            else if (randomAction == 4)
+            {
+                //  Outputs the uppercase values of the string
+                Console.Write("Your string in all uppercase values is: {0}", userString.ToUpper());
+            }
+            else if (randomAction == 5)
+            {
+                //  Replaces any e with _
+                userString = userString.Replace("e", "_");
+                Console.WriteLine("If we replace any letter e with an _, your string will look like: {0}", userString);
+            }
+            else if (randomAction == 6)
+            {
+                //  Outputs the hash code of a string
+                Console.WriteLine("The hash code of your string is: {0}", userString.GetHashCode());
+            }
+            else if (randomAction == 7)
+            {
+                //  Outputs the lowercase values of the string
+                Console.WriteLine("Your string in all lowercase values is: {0}", userString.ToLower());
+            }
+            else if (randomAction == 8)
+            {
+                //  Concatenates two strings
+                Console.WriteLine("Input another string.");
+                string str2 = Console.ReadLine();
+                userString = string.Concat(userString, str2);
+                Console.WriteLine("Your two strings together are: {0}", userString);
+            }
+            else if (randomAction == 9)
+            {
+                //  Checks how many words are in the string provided
+                int words = Regex.Matches(userString, @"\b\w+\b").Count;
+                Console.WriteLine("You have {0} word(s) in your string.", words);
+            }
+            else if (randomAction == 10)
+            {
+                //  Checks how many spaces are in the string
+                char[] strArray = userString.ToCharArray();
+                int count = 0;
+                foreach (char c in strArray)
+                {
+                    if (char.IsWhiteSpace(c))
+                    {
+                        count += 1;
+                    }
+                }
+                Console.WriteLine("You have {0} spaces in your string.", count);
+            }
         }
     }
 }
