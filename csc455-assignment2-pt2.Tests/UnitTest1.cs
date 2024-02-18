@@ -1,6 +1,5 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using csc455_assignment2_pt2;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using System;
 
 namespace csc455_assignment2_pt2.Tests
@@ -15,7 +14,10 @@ namespace csc455_assignment2_pt2.Tests
             string expected = "Here is a random integer number between 1 and 10: ";
             MenuOptions menuOptions = new MenuOptions();
             //  Act
-
+            string str = menuOptions.processChoice("1");
+            //  Assert
+            Assert.IsTrue(str.Contains(expected));
         }
     }
 }
+
