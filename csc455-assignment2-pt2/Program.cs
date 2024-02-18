@@ -18,26 +18,13 @@ namespace csc455_assignment2_pt2
             //  Loop to run through the program
             do
             {
+                MenuOptions menuChoice = new MenuOptions();
+                
                 //  Display menu and get user input
-                displayMenu();
+                menuChoice.displayMenu();
                 string userInput = Console.ReadLine();
-                if(userInput == "1")
-                {
-                    randomInt();
-                } else if(userInput == "2")
-                {
-                    displayShortDate();
-                } else if(userInput == "3")
-                {
-                    printRandomDino();
-                } else if (userInput == "4")
-                {
-                    randomStringAction();
-                }
-                else
-                {
-                    Console.WriteLine("Input a valid integer number between 1 and 4.");
-                }
+
+                menuChoice.processChoice(userInput);
 
                 Console.WriteLine("Would you like to try again?  Y/N");
                 userInput = Console.ReadLine();
@@ -55,13 +42,43 @@ namespace csc455_assignment2_pt2
             Console.ReadLine();
         }
 
-        static void displayMenu()
+        
+    }
+
+    //  Class of menu options
+    public class MenuOptions
+    {
+        public void displayMenu()
         {
             Console.WriteLine("Choose a feature you'd like this program to run by entering a number between 1 and 4.");
             Console.WriteLine("     1 - Random Positive Integer Between 1 And 10");
             Console.WriteLine("     2 - Output Today's Date In Short Date String");
             Console.WriteLine("     3 - Output A Random Dinosaur Name");
             Console.WriteLine("     4 - Perform A Random Action On A String");
+        }
+
+        public void processChoice(string str)
+        {
+            if (str == "1")
+            {
+                randomInt();
+            }
+            else if (str == "2")
+            {
+                displayShortDate();
+            }
+            else if (str == "3")
+            {
+                printRandomDino();
+            }
+            else if (str == "4")
+            {
+                randomStringAction();
+            }
+            else
+            {
+                Console.WriteLine("Input a valid integer number between 1 and 4.");
+            }
         }
 
         //  Displays a random integer based on the user's input
@@ -167,6 +184,8 @@ namespace csc455_assignment2_pt2
             }
         }
     }
+
+
 
     //  Class of string actions for function 4 to use
     public class StringActions
