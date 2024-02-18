@@ -20,7 +20,7 @@ namespace csc455_assignment2_pt2
             {
                 MenuOptions menuChoice = new MenuOptions();
                 
-                //  Display menu and get user input
+                //  Display menu and get user input for later on
                 menuChoice.displayMenu();
                 string userInput = Console.ReadLine();
                 Console.WriteLine("Input a string of your choice.");
@@ -28,10 +28,12 @@ namespace csc455_assignment2_pt2
                 Console.WriteLine("Input another string of your choice.");
                 string userString2 = Console.ReadLine();
 
+                //  Process the user's choice
                 string str = menuChoice.processChoice(userInput, userString1, userString2);
                 Console.WriteLine(str);
 
-                Console.WriteLine("Would you like to try again?  Y/N");
+                //  Give user the option to try again
+                Console.WriteLine("Would you like to try again? Y/N");
                 userInput = Console.ReadLine();
                 
                 if(userInput == "N" || userInput == "n")
@@ -60,7 +62,7 @@ namespace csc455_assignment2_pt2
             Console.WriteLine("     4 - Perform A Random Action On A String");
         }
 
-        //  Takes in the user's choice and does an if statement to call the functions
+        //  Takes in the user's choice calls the desired function
         public string processChoice(string str, string userString1, string userString2)
         {
             string outPut = "";
@@ -180,8 +182,6 @@ namespace csc455_assignment2_pt2
             return str;
         }
     }
-
-
 
     //  Class of string actions for function 4 to use
     public class StringActions

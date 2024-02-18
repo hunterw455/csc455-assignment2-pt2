@@ -88,13 +88,13 @@ namespace csc455_assignment2_pt2.Tests
             }
         }
 
-
         //  Tests if the user inputs an invalid choice
         [DataTestMethod]
         [DataRow("", "", "")]
         [DataRow(" ", "", "")]
         [DataRow("34", "", "")]
         [DataRow("\t", "", "")]
+        [DataRow("..", "", "")]
         [DataRow("-10000000000000000000000000000000000", "", "")]
         public void testMethodInvalidInputs(string input, string input1, string input2)
         {
@@ -122,6 +122,7 @@ namespace csc455_assignment2_pt2.Tests
             Assert.AreEqual(str, expected);
         }
 
+        //  Data test method to test the replace e with _ string action
         [DataTestMethod]
         [DataRow("hello", "h_llo")]
         [DataRow("eeee", "____")]
@@ -137,6 +138,7 @@ namespace csc455_assignment2_pt2.Tests
             Assert.AreEqual(str, expected);
         }
 
+        //  Data test method to test the concatenate string action
         [DataTestMethod]
         [DataRow("Hello ", "World", "Hello World")]
         [DataRow("What's the object oriented way to become wealthy?", " Inheritance.", "What's the object oriented way to become wealthy? Inheritance.")]
@@ -152,6 +154,7 @@ namespace csc455_assignment2_pt2.Tests
             Assert.AreEqual(concatenate, expected);
         }
 
+        //  Data test method to test the count words action
         [DataTestMethod]
         [DataRow("Count the words in this sentence.", 7)] // Will intentionally fail, as there are 6 words in the sentence
         [DataRow("hello world", 2)]
@@ -168,6 +171,7 @@ namespace csc455_assignment2_pt2.Tests
             Assert.AreEqual(count, actualCount);
         }
 
+        //  Data test method to test the count spaces string action
         [DataTestMethod]
         [DataRow("Elizabeth has eleven elves in her elm tree", 7)]
         [DataRow("Hello World", 1)]
