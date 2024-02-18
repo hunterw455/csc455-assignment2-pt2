@@ -36,5 +36,13 @@ namespace csc455_assignment2_pt2
             Random randomNum = new Random();
             Console.WriteLine("Here is a random integer number between 1 and 10: {0}", randomNum.Next(1, 11));
         }
+
+        //  Displays today's date in short date string
+        static void displayShortDate()
+        {
+            DateTime todayDate = DateTime.Now;
+            string shortDate = todayDate.ToShortDateString();
+            Console.WriteLine("Today's date is {0}.", shortDate);
+        }
     }
 }
