@@ -18,28 +18,22 @@ namespace csc455_assignment2_pt2
             //  Loop to run through the program
             do
             {
-                //  Display menu and get user input
-                displayMenu();
+                MenuOptions menuChoice = new MenuOptions();
+                
+                //  Display menu and get user input for later on
+                menuChoice.displayMenu();
                 string userInput = Console.ReadLine();
-                if(userInput == "1")
-                {
-                    randomInt();
-                } else if(userInput == "2")
-                {
-                    displayShortDate();
-                } else if(userInput == "3")
-                {
-                    printRandomDino();
-                } else if (userInput == "4")
-                {
-                    randomStringAction();
-                }
-                else
-                {
-                    Console.WriteLine("Input a valid integer number between 1 and 4.");
-                }
+                Console.WriteLine("Input a string of your choice.");
+                string userString1 = Console.ReadLine();
+                Console.WriteLine("Input another string of your choice.");
+                string userString2 = Console.ReadLine();
 
-                Console.WriteLine("Would you like to try again?  Y/N");
+                //  Process the user's choice
+                string str = menuChoice.processChoice(userInput, userString1, userString2);
+                Console.WriteLine(str);
+
+                //  Give user the option to try again
+                Console.WriteLine("Would you like to try again? Y/N");
                 userInput = Console.ReadLine();
                 
                 if(userInput == "N" || userInput == "n")
@@ -50,12 +44,16 @@ namespace csc455_assignment2_pt2
             }
             while (resumeProgram);
             
-            
             //  Used so the cmd didn't exit quickly
             Console.ReadLine();
         }
+ 
+    }
 
-        static void displayMenu()
+    //  Class of menu options
+    public class MenuOptions
+    {
+        public void displayMenu()
         {
             Console.WriteLine("Choose a feature you'd like this program to run by entering a number between 1 and 4.");
             Console.WriteLine("     1 - Random Positive Integer Between 1 And 10");
@@ -64,22 +62,47 @@ namespace csc455_assignment2_pt2
             Console.WriteLine("     4 - Perform A Random Action On A String");
         }
 
+        //  Takes in the user's choice calls the desired function
+        public string processChoice(string str, string userString1, string userString2)
+        {
+            string outPut = "";
+            switch(str){
+                case "1":
+                    outPut = randomInt();
+                    return outPut;
+                case "2":
+                    outPut = displayShortDate();
+                    return outPut;
+                case "3":
+                    outPut = printRandomDino();
+                    return outPut;
+                case "4":
+                    outPut = randomStringAction(userString1, userString2);
+                    return outPut;
+                default:
+                    outPut = "Input a valid integer number between 1 and 4.";
+                    return outPut;
+            }
+        }
+
         //  Displays a random integer based on the user's input
-        static void randomInt()
+        static string randomInt()
         {
             Random randomNum = new Random();
-            Console.WriteLine("Here is a random integer number between 1 and 10: {0}", randomNum.Next(1, 11));
+            string str = "Here is a random integer number between 1 and 10: " + randomNum.Next(1, 11) + ".";
+            return str;
         }
 
         //  Displays today's date in short date string
-        static void displayShortDate()
+        static string displayShortDate()
         {
             DateTime todayDate = DateTime.Now;
             string shortDate = todayDate.ToShortDateString();
-            Console.WriteLine("Today's date is {0}.", shortDate);
+            string str = "Today's date is " + shortDate + ".";
+            return str;
         }
 
-        static void printRandomDino()
+        static string printRandomDino()
         {
             //  Create a list of 10 dinosaur names, sort, and print one at random
             //  Source: https://www.thoughtco.com/the-dinosaur-encyclopedia-1091968
@@ -100,71 +123,63 @@ namespace csc455_assignment2_pt2
 
             Random randomNum = new Random();
             int randomDino = randomNum.Next(0, 10);
-
-            Console.WriteLine("Here is a random dinosaur name: {0}", dinosaurNames[randomDino]);
+            string str = "Here is a random dinosaur name: " + dinosaurNames[randomDino] + ".";
+            return str;
         }
 
         //  Performs a random string action
-        static void randomStringAction()
+        static string randomStringAction(string userString, string userString2)
         {
-            Console.WriteLine("Input a string of your choice.");
-            string userString = Console.ReadLine();
-
             StringActions performString = new StringActions();
 
             Random randomNum = new Random();
             int randomAction = randomNum.Next(1, 11);
 
+            string str = "";
+
             //  If statements to perform a random action on a string the user inputs
             if (randomAction == 1)
             {
-                Console.Write("Your string in reverse is: {0}", performString.reverseString(userString));
+                str = "Your fist string in reverse is: " + performString.reverseString(userString) + ".";
             }
             else if (randomAction == 2)
             {
-                //  Outputs length of string
-                Console.Write("The length of your string is: {0}", performString.getLength(userString));
+                str = "The length of your first string is: " + performString.getLength(userString) + ".";
             }
             else if (randomAction == 3)
             {
-                //  Ouputs half the string
-                Console.WriteLine("Half of your string is: {0}", performString.getHalf(userString));
+                str = "Half of your first string is: " + performString.getHalf(userString) + ".";
             }
             else if (randomAction == 4)
             {
-                //  Outputs the uppercase values of the string
-                Console.Write("Your string in all uppercase values is: {0}", userString.ToUpper());
+                str = "Your first string in all uppercase values is: " + userString.ToUpper() + ".";
             }
             else if (randomAction == 5)
             {
-                //  Replaces any e with _
-                Console.WriteLine("If we replace any letter e with an _, your string will look like: {0}", performString.replaceE(userString));
+                str = "If we replace any letter e with an _, your first string will look like: " + performString.replaceE(userString) + ".";
             }
             else if (randomAction == 6)
             {
-                //  Outputs the hash code of a string
-                Console.WriteLine("The hash code of your string is: {0}", userString.GetHashCode());
+                str = "The hash code of your first string is: " + userString.GetHashCode() + ".";
             }
             else if (randomAction == 7)
             {
-                //  Outputs the lowercase values of the string
-                Console.WriteLine("Your string in all lowercase values is: {0}", userString.ToLower());
+                str = "Your first string in all lowercase values is: " + userString.ToLower() + ".";
             }
             else if (randomAction == 8)
             {
-                //  Concatenates two strings
-                Console.WriteLine("Your two strings together are: {0}", performString.concatenate(userString));
+                str = "Your two strings together are: " + performString.concatenate(userString, userString2) + ".";
             }
             else if (randomAction == 9)
             {
-                //  Checks how many words are in the string provided
-                Console.WriteLine("You have {0} word(s) in your string.", performString.countWords(userString));
+                str = "You have " + performString.countWords(userString) + " word(s) in your first string.";
             }
             else if (randomAction == 10)
             {
-                //  Checks how many spaces are in the string
-                Console.WriteLine("You have {0} spaces in your string.", performString.countSpaces(userString));
+                str = "You have " + performString.countSpaces(userString) + " spaces in your first string.";
             }
+            
+            return str;
         }
     }
 
@@ -193,13 +208,12 @@ namespace csc455_assignment2_pt2
         public string replaceE(string str)
         {
             str = str.Replace("e", "_");
+            str = str.Replace("E", "_");
             return str;
         }
 
-        public string concatenate(string str)
+        public string concatenate(string str, string str2)
         {
-            Console.WriteLine("Input another string.");
-            string str2 = Console.ReadLine();
             str = string.Concat(str, str2);
             return str;
         }
