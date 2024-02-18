@@ -110,27 +110,25 @@ namespace csc455_assignment2_pt2
             Console.WriteLine("Input a string of your choice.");
             string userString = Console.ReadLine();
 
+            StringActions performString = new StringActions();
+
             Random randomNum = new Random();
             int randomAction = randomNum.Next(1, 11);
 
             //  If statements to perform a random action on a string the user inputs
             if (randomAction == 1)
             {
-                //  Reverses the string
-                char[] reverseArray = userString.ToCharArray();
-                Array.Reverse(reverseArray);
-                string reversedString = new string(reverseArray);
-                Console.Write("Your string in reverse is: {0}", reversedString);
+                Console.Write("Your string in reverse is: {0}", performString.reverseString(userString));
             }
             else if (randomAction == 2)
             {
                 //  Outputs length of string
-                Console.Write("The length of your string is: {0}", userString.Length);
+                Console.Write("The length of your string is: {0}", performString.getLength(userString));
             }
             else if (randomAction == 3)
             {
                 //  Ouputs half the string
-                Console.WriteLine("Half of your string is: {0}", userString.Substring(0, userString.Length / 2));
+                Console.WriteLine("Half of your string is: {0}", performString.getHalf(userString));
             }
             else if (randomAction == 4)
             {
@@ -140,8 +138,7 @@ namespace csc455_assignment2_pt2
             else if (randomAction == 5)
             {
                 //  Replaces any e with _
-                userString = userString.Replace("e", "_");
-                Console.WriteLine("If we replace any letter e with an _, your string will look like: {0}", userString);
+                Console.WriteLine("If we replace any letter e with an _, your string will look like: {0}", performString.replaceE(userString));
             }
             else if (randomAction == 6)
             {
@@ -156,31 +153,75 @@ namespace csc455_assignment2_pt2
             else if (randomAction == 8)
             {
                 //  Concatenates two strings
-                Console.WriteLine("Input another string.");
-                string str2 = Console.ReadLine();
-                userString = string.Concat(userString, str2);
-                Console.WriteLine("Your two strings together are: {0}", userString);
+                Console.WriteLine("Your two strings together are: {0}", performString.concatenate(userString));
             }
             else if (randomAction == 9)
             {
                 //  Checks how many words are in the string provided
-                int words = Regex.Matches(userString, @"\b\w+\b").Count;
-                Console.WriteLine("You have {0} word(s) in your string.", words);
+                Console.WriteLine("You have {0} word(s) in your string.", performString.countWords(userString));
             }
             else if (randomAction == 10)
             {
                 //  Checks how many spaces are in the string
-                char[] strArray = userString.ToCharArray();
-                int count = 0;
-                foreach (char c in strArray)
-                {
-                    if (char.IsWhiteSpace(c))
-                    {
-                        count += 1;
-                    }
-                }
-                Console.WriteLine("You have {0} spaces in your string.", count);
+                Console.WriteLine("You have {0} spaces in your string.", performString.countSpaces(userString));
             }
+        }
+    }
+
+    //  Class of string actions for function 4 to use
+    public class StringActions
+    {
+        //  Reverses the string
+        public string reverseString(string str)
+        {
+            char[] reverseArray = str.ToCharArray();
+            Array.Reverse(reverseArray);
+            str = new string(reverseArray);
+            return str;
+        }
+
+        public int getLength(string str)
+        {
+            return str.Length;
+        }
+
+        public string getHalf(string str)
+        {
+            return str.Substring(0, str.Length / 2);
+        }
+
+        public string replaceE(string str)
+        {
+            str = str.Replace("e", "_");
+            return str;
+        }
+
+        public string concatenate(string str)
+        {
+            Console.WriteLine("Input another string.");
+            string str2 = Console.ReadLine();
+            str = string.Concat(str, str2);
+            return str;
+        }
+
+        public int countWords(string str)
+        {
+            int words = Regex.Matches(str, @"\b\w+\b").Count;
+            return words;
+        }
+
+        public int countSpaces(string str)
+        {
+            char[] strArray = str.ToCharArray();
+            int count = 0;
+            foreach (char c in strArray)
+            {
+                if (char.IsWhiteSpace(c))
+                {
+                    count += 1;
+                }
+            }
+            return count;
         }
     }
 }
