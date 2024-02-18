@@ -37,12 +37,10 @@ namespace csc455_assignment2_pt2
             }
             while (resumeProgram);
             
-            
             //  Used so the cmd didn't exit quickly
             Console.ReadLine();
         }
-
-        
+ 
     }
 
     //  Class of menu options
@@ -57,8 +55,18 @@ namespace csc455_assignment2_pt2
             Console.WriteLine("     4 - Perform A Random Action On A String");
         }
 
+        //  Takes in the user's choice and does an if statement to call the functions
         public void processChoice(string str)
         {
+            string outPut = "";
+            switch(str){
+                case "1":
+                    outPut = randomInt();
+                    break;
+                case "2":
+                    outPut = displayShortDate();
+                    break;
+            }
             if (str == "1")
             {
                 randomInt();
@@ -82,18 +90,20 @@ namespace csc455_assignment2_pt2
         }
 
         //  Displays a random integer based on the user's input
-        static void randomInt()
+        static string randomInt()
         {
             Random randomNum = new Random();
-            Console.WriteLine("Here is a random integer number between 1 and 10: {0}", randomNum.Next(1, 11));
+            string str = "Here is a random integer number between 1 and 10: " + randomNum.Next(1, 11) + ".";
+            return str;
         }
 
         //  Displays today's date in short date string
-        static void displayShortDate()
+        static string displayShortDate()
         {
             DateTime todayDate = DateTime.Now;
             string shortDate = todayDate.ToShortDateString();
-            Console.WriteLine("Today's date is {0}.", shortDate);
+            string str = "Today's date is " + shortDate + ".";
+            return str;
         }
 
         static void printRandomDino()
