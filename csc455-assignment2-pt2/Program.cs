@@ -23,8 +23,12 @@ namespace csc455_assignment2_pt2
                 //  Display menu and get user input
                 menuChoice.displayMenu();
                 string userInput = Console.ReadLine();
+                Console.WriteLine("Input a string of your choice.");
+                string userString1 = Console.ReadLine();
+                Console.WriteLine("Input another string of your choice.");
+                string userString2 = Console.ReadLine();
 
-                string str = menuChoice.processChoice(userInput);
+                string str = menuChoice.processChoice(userInput, userString1, userString2);
                 Console.WriteLine(str);
 
                 Console.WriteLine("Would you like to try again?  Y/N");
@@ -57,7 +61,7 @@ namespace csc455_assignment2_pt2
         }
 
         //  Takes in the user's choice and does an if statement to call the functions
-        public string processChoice(string str)
+        public string processChoice(string str, string userString1, string userString2)
         {
             string outPut = "";
             switch(str){
@@ -71,7 +75,7 @@ namespace csc455_assignment2_pt2
                     outPut = printRandomDino();
                     return outPut;
                 case "4":
-                    outPut = randomStringAction();
+                    outPut = randomStringAction(userString1, userString2);
                     return outPut;
                 default:
                     outPut = "Input a valid integer number between 1 and 4.";
@@ -122,11 +126,8 @@ namespace csc455_assignment2_pt2
         }
 
         //  Performs a random string action
-        static string randomStringAction()
+        static string randomStringAction(string userString, string userString2)
         {
-            Console.WriteLine("Input a string of your choice.");
-            string userString = Console.ReadLine();
-
             StringActions performString = new StringActions();
 
             Random randomNum = new Random();
@@ -137,43 +138,43 @@ namespace csc455_assignment2_pt2
             //  If statements to perform a random action on a string the user inputs
             if (randomAction == 1)
             {
-                str = "Your string in reverse is: " + performString.reverseString(userString) + ".";
+                str = "Your fist string in reverse is: " + performString.reverseString(userString) + ".";
             }
             else if (randomAction == 2)
             {
-                str = "The length of your string is: " + performString.getLength(userString) + ".";
+                str = "The length of your first string is: " + performString.getLength(userString) + ".";
             }
             else if (randomAction == 3)
             {
-                str = "Half of your string is: " + performString.getHalf(userString) + ".";
+                str = "Half of your first string is: " + performString.getHalf(userString) + ".";
             }
             else if (randomAction == 4)
             {
-                str = "Your string in all uppercase values is: " + userString.ToUpper() + ".";
+                str = "Your first string in all uppercase values is: " + userString.ToUpper() + ".";
             }
             else if (randomAction == 5)
             {
-                str = "If we replace any letter e with an _, your string will look like: " + performString.replaceE(userString) + ".";
+                str = "If we replace any letter e with an _, your first string will look like: " + performString.replaceE(userString) + ".";
             }
             else if (randomAction == 6)
             {
-                str = "The hash code of your string is: " + userString.GetHashCode() + ".";
+                str = "The hash code of your first string is: " + userString.GetHashCode() + ".";
             }
             else if (randomAction == 7)
             {
-                str = "Your string in all lowercase values is: " + userString.ToLower() + ".";
+                str = "Your first string in all lowercase values is: " + userString.ToLower() + ".";
             }
             else if (randomAction == 8)
             {
-                str = "Your two strings together are: " + performString.concatenate(userString) + ".";
+                str = "Your two strings together are: " + performString.concatenate(userString, userString2) + ".";
             }
             else if (randomAction == 9)
             {
-                str = "You have " + performString.countWords(userString) + " word(s) in your string.";
+                str = "You have " + performString.countWords(userString) + " word(s) in your first string.";
             }
             else if (randomAction == 10)
             {
-                str = "You have " + performString.countSpaces(userString) + " spaces in your string.";
+                str = "You have " + performString.countSpaces(userString) + " spaces in your first string.";
             }
             
             return str;
@@ -210,10 +211,8 @@ namespace csc455_assignment2_pt2
             return str;
         }
 
-        public string concatenate(string str)
+        public string concatenate(string str, string str2)
         {
-            Console.WriteLine("Input another string.");
-            string str2 = Console.ReadLine();
             str = string.Concat(str, str2);
             return str;
         }
