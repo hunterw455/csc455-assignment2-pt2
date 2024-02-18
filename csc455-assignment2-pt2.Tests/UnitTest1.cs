@@ -152,7 +152,21 @@ namespace csc455_assignment2_pt2.Tests
             Assert.AreEqual(concatenate, expected);
         }
 
-
+        [DataTestMethod]
+        [DataRow("Count the words in this sentence.", 7)] // Will intentionally fail, as there are 6 words in the sentence
+        [DataRow("hello world", 2)]
+        [DataRow("hello", 1)]
+        [DataRow("", 0)]
+        [DataRow("\t", 0)]
+        public void testStringActionCountWords(string str, int actualCount)
+        {
+            //  Arrange
+            StringActions stringActions = new StringActions();
+            //  Act
+            int count = stringActions.countWords(str);
+            //  Assert
+            Assert.AreEqual(count, actualCount);
+        }
     }
 }
 
