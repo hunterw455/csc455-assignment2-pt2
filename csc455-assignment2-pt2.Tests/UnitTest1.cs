@@ -28,7 +28,7 @@ namespace csc455_assignment2_pt2.Tests
             string expected = "Today's date is";
             MenuOptions menuOptions = new MenuOptions();
             //  Act
-            string str = menuOptions.processChoice("2","", "");
+            string str = menuOptions.processChoice("2", "", "");
             //  Assert
             Assert.IsTrue(str.Contains(expected));
         }
@@ -41,7 +41,7 @@ namespace csc455_assignment2_pt2.Tests
             string expected = "Here is a random dinosaur name:";
             MenuOptions menuOptions = new MenuOptions();
             //  Act
-            string str = menuOptions.processChoice("3","","");
+            string str = menuOptions.processChoice("3", "", "");
             //  Assert
             Assert.IsTrue(str.Contains(expected));
         }
@@ -91,25 +91,25 @@ namespace csc455_assignment2_pt2.Tests
 
         //  Tests if the user inputs an invalid choice
         [DataTestMethod]
-        [DataRow("","","")]
-        [DataRow(" ", "","")]
-        [DataRow("34", "","")]
-        [DataRow("\t", "","")]
-        [DataRow("-10000000000000000000000000000000000", "","")]
+        [DataRow("", "", "")]
+        [DataRow(" ", "", "")]
+        [DataRow("34", "", "")]
+        [DataRow("\t", "", "")]
+        [DataRow("-10000000000000000000000000000000000", "", "")]
         public void testMethodInvalidInputs(string input, string input1, string input2)
         {
             //  Arrange
             string expected = "Input a valid integer number between 1 and 4.";
             MenuOptions menuOptions = new MenuOptions();
             //  Act
-            string str = menuOptions.processChoice(input,input1, input2);
+            string str = menuOptions.processChoice(input, input1, input2);
             //  Assert
             Assert.IsTrue(str.Contains(expected));
         }
 
         //  Data test method to test the reverse string action
         [DataTestMethod]
-        [DataRow("hello","olleh")]
+        [DataRow("hello", "olleh")]
         [DataRow("apples and bananas", "sananab dna selppa")]
         [DataRow("Hello World", "Hello World")] // Will intentionally fail the test
         public void testStringActionReverseString(string str, string expected)
@@ -118,9 +118,41 @@ namespace csc455_assignment2_pt2.Tests
             StringActions stringAction = new StringActions();
             //  Act
             str = stringAction.reverseString(str);
-            Assert.AreEqual(str,expected);
-
+            //  Assert
+            Assert.AreEqual(str, expected);
         }
+
+        [DataTestMethod]
+        [DataRow("hello", "h_llo")]
+        [DataRow("eeee", "____")]
+        [DataRow("Elizabeth has eleven elves in her elm tree", "_lizab_th has _l_v_n _lv_s in h_r _lm tr__")]
+        [DataRow("Everyone", "Ev_ryon_")] // Will intentionally fail the test
+        public void testStringActionReplaceE(string str, string expected)
+        {
+            //  Arrange
+            StringActions stringAction = new StringActions();
+            //  Act
+            str = stringAction.replaceE(str);
+            //  Assert
+            Assert.AreEqual(str, expected);
+        }
+
+        [DataTestMethod]
+        [DataRow("Hello ", "World", "Hello World")]
+        [DataRow("What's the object oriented way to become wealthy?", " Inheritance.", "What's the object oriented way to become wealthy? Inheritance.")]
+        [DataRow("Testing is", " fun...", "testing is fun..")] // Will intentionally fail the test because the expected has one less .
+        public void testStringActionConcatenate(string str1, string str2, string expected)
+        {
+            //  Arrange
+            StringActions stringAction = new StringActions();
+            //  Act
+            string concatenate = "";
+            concatenate = stringAction.concatenate(str1, str2);
+            //  Assert
+            Assert.AreEqual(concatenate, expected);
+        }
+
+
     }
 }
 

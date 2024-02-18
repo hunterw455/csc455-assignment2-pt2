@@ -208,6 +208,7 @@ namespace csc455_assignment2_pt2
         public string replaceE(string str)
         {
             str = str.Replace("e", "_");
+            str = str.Replace("E", "_");
             return str;
         }
 
