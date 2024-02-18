@@ -167,6 +167,21 @@ namespace csc455_assignment2_pt2.Tests
             //  Assert
             Assert.AreEqual(count, actualCount);
         }
+
+        [DataTestMethod]
+        [DataRow("Elizabeth has eleven elves in her elm tree", 7)]
+        [DataRow("Hello World", 1)]
+        [DataRow("", 0)]
+        [DataRow("\t",0)] // Will intentionally fail the test as tab creates white space
+        public void testStringActionCountSpaces(string str, int actualCount)
+        {
+            //  Arrange
+            StringActions stringActions = new StringActions();
+            //  Act
+            int count = stringActions.countSpaces(str);
+            //  Assert
+            Assert.AreEqual(count, actualCount);
+        }
     }
 }
 
