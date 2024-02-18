@@ -33,6 +33,7 @@ namespace csc455_assignment2_pt2.Tests
             Assert.IsTrue(str.Contains(expected));
         }
 
+        //  Tests the third method the program will perform
         [TestMethod]
         public void testMethod3()
         {
@@ -44,6 +45,20 @@ namespace csc455_assignment2_pt2.Tests
             //  Assert
             Assert.IsTrue(str.Contains(expected));
         }
+
+        //  Tests if the user inputs an invalid input
+        [TestMethod]
+        public void testMethodInvalidInput1()
+        {
+            //  Arrange
+            string expected = "Input a valid integer number between 1 and 4.";
+            MenuOptions menuOptions = new MenuOptions();
+            //  Act
+            string str = menuOptions.processChoice("");
+            //  Assert
+            Assert.IsTrue(str.Contains(expected));
+        }
+
     }
 }
 
