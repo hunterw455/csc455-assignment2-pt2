@@ -47,6 +47,20 @@ namespace csc455_assignment2_pt2.Tests
         }
 
         //  Tests if the user inputs an invalid input
+        [DataTestMethod]
+        [DataRow("")]
+        [DataRow(" ")]
+        [DataRow(34)]
+        public void testMethodInvalidInputs(string input)
+        {
+            //  Arrange
+            string expected = "Input a valid integer number between 1 and 4.";
+            MenuOptions menuOptions = new MenuOptions();
+            //  Act
+            string str = menuOptions.processChoice(input);
+            //  Assert
+            Assert.IsTrue(str.Contains(expected));
+        }
         [TestMethod]
         public void testMethodInvalidInput1()
         {
