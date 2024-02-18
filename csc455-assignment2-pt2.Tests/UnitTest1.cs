@@ -111,6 +111,7 @@ namespace csc455_assignment2_pt2.Tests
         [DataTestMethod]
         [DataRow("hello","olleh")]
         [DataRow("apples and bananas", "sananab dna selppa")]
+        [DataRow("Hello World", "Hello World")] // Will intentionally fail the test
         public void testStringActionReverseString(string str, string expected)
         {
             //  Arrange
