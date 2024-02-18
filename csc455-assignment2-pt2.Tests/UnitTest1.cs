@@ -7,6 +7,7 @@ namespace csc455_assignment2_pt2.Tests
     [TestClass]
     public class UnitTest1
     {
+        //  Tests the first method the program will perform
         [TestMethod]
         public void testMethod1()
         {
@@ -15,6 +16,31 @@ namespace csc455_assignment2_pt2.Tests
             MenuOptions menuOptions = new MenuOptions();
             //  Act
             string str = menuOptions.processChoice("1");
+            //  Assert
+            Assert.IsTrue(str.Contains(expected));
+        }
+
+        //  Tests the second method the program will perform
+        [TestMethod]
+        public void testMethod2()
+        {
+            //  Arrange
+            string expected = "Today's date is";
+            MenuOptions menuOptions = new MenuOptions();
+            //  Act
+            string str = menuOptions.processChoice("2");
+            //  Assert
+            Assert.IsTrue(str.Contains(expected));
+        }
+
+        [TestMethod]
+        public void testMethod3()
+        {
+            //  Arrange
+            string expected = "Here is a random dinosaur name:";
+            MenuOptions menuOptions = new MenuOptions();
+            //  Act
+            string str = menuOptions.processChoice("3");
             //  Assert
             Assert.IsTrue(str.Contains(expected));
         }
