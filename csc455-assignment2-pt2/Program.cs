@@ -12,9 +12,35 @@ namespace csc455_assignment2_pt2
     {
         static void Main(string[] args)
         {
-            //  Display menu and get user input
-            displayMenu();
-            string userInput = Console.ReadLine();
+            bool resumeProgram = true;
+            
+            //  Loop to run through the program
+            do
+            {
+                //  Display menu and get user input
+                displayMenu();
+                string userInput = Console.ReadLine();
+                if(userInput == "1")
+                {
+                    randomInt();
+                } else if(userInput == "2")
+                {
+                    displayShortDate();
+                } else if(userInput == "3")
+                {
+                    printRandomDino();
+                }
+
+                Console.WriteLine("Would you like to try again?  Y/N");
+                userInput = Console.ReadLine();
+                
+                if(userInput == "N" || userInput == "n")
+                {
+                    resumeProgram = false;
+                    break;
+                }
+            }
+            while (resumeProgram);
             
             
             //  Used so the cmd didn't exit quickly
