@@ -106,6 +106,20 @@ namespace csc455_assignment2_pt2.Tests
             //  Assert
             Assert.IsTrue(str.Contains(expected));
         }
+
+        //  Data test method to test the reverse string action
+        [DataTestMethod]
+        [DataRow("hello","olleh")]
+        [DataRow("apples and bananas", "sananab dna selppa")]
+        public void testStringActionReverseString(string str, string expected)
+        {
+            //  Arrange
+            StringActions stringAction = new StringActions();
+            //  Act
+            str = stringAction.reverseString(str);
+            Assert.AreEqual(str,expected);
+
+        }
     }
 }
 
