@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>csc455_assignment2_pt2</RootNamespace>
     <AssemblyName>csc455-assignment2-pt2</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>net48</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
