@@ -13,7 +13,7 @@ namespace csc455_assignment2_pt2.Tests
         {
             //  Arrange
             string expected = "Here is a random integer number between 1 and 10: ";
-            MenuOptions menuOptions = new MenuOptions();
+            MenuOptions menuOptions = new MenuOptions(); 
             //  Act
             string str = menuOptions.processChoice("1", "", "");
             //  Assert
@@ -111,7 +111,7 @@ namespace csc455_assignment2_pt2.Tests
         [DataTestMethod]
         [DataRow("hello", "olleh")]
         [DataRow("apples and bananas", "sananab dna selppa")]
-        [DataRow("Hello World", "Hello World")] // Will intentionally fail the test
+        //[DataRow("Hello World", "Hello World")] // Will intentionally fail the test
         public void testStringActionReverseString(string str, string expected)
         {
             //  Arrange
@@ -127,7 +127,7 @@ namespace csc455_assignment2_pt2.Tests
         [DataRow("hello", "h_llo")]
         [DataRow("eeee", "____")]
         [DataRow("Elizabeth has eleven elves in her elm tree", "_lizab_th has _l_v_n _lv_s in h_r _lm tr__")]
-        [DataRow("Everyone", "Ev_ryon_")] // Will intentionally fail the test
+        //[DataRow("Everyone", "Ev_ryon_")] // Will intentionally fail the test
         public void testStringActionReplaceE(string str, string expected)
         {
             //  Arrange
@@ -142,7 +142,7 @@ namespace csc455_assignment2_pt2.Tests
         [DataTestMethod]
         [DataRow("Hello ", "World", "Hello World")]
         [DataRow("What's the object oriented way to become wealthy?", " Inheritance.", "What's the object oriented way to become wealthy? Inheritance.")]
-        [DataRow("Testing is", " fun...", "testing is fun..")] // Will intentionally fail the test because the expected has one less .
+        //[DataRow("Testing is", " fun...", "testing is fun..")] // Will intentionally fail the test because the expected has one less .
         public void testStringActionConcatenate(string str1, string str2, string expected)
         {
             //  Arrange
@@ -156,7 +156,7 @@ namespace csc455_assignment2_pt2.Tests
 
         //  Data test method to test the count words action
         [DataTestMethod]
-        [DataRow("Count the words in this sentence.", 7)] // Will intentionally fail, as there are 6 words in the sentence
+        //[DataRow("Count the words in this sentence.", 7)] // Will intentionally fail, as there are 6 words in the sentence
         [DataRow("hello world", 2)]
         [DataRow("hello", 1)]
         [DataRow("", 0)]
@@ -176,7 +176,7 @@ namespace csc455_assignment2_pt2.Tests
         [DataRow("Elizabeth has eleven elves in her elm tree", 7)]
         [DataRow("Hello World", 1)]
         [DataRow("", 0)]
-        [DataRow("\t",0)] // Will intentionally fail the test as tab creates white space
+        //[DataRow("\t", 0)] // Will intentionally fail the test as tab creates white space
         public void testStringActionCountSpaces(string str, int actualCount)
         {
             //  Arrange
@@ -185,6 +185,40 @@ namespace csc455_assignment2_pt2.Tests
             int count = stringActions.countSpaces(str);
             //  Assert
             Assert.AreEqual(count, actualCount);
+        }
+        // Isaac Test: Test date display function
+        [TestMethod]
+        public void testDisplayShortDate()
+        {
+            // Arrange
+            var expected = "Today's date is " + DateTime.Now.ToShortDateString() + ".";
+
+            // Act
+            var result = MenuOptions.displayShortDate();
+
+            // Assert
+            Assert.AreEqual(expected, result);
+        }
+
+        //Jacob Test: randomizer test
+        [TestMethod]
+        public void testRandom() 
+        {
+            //arrange
+          
+            string result = MenuOptions.randomInt();
+            string sub = result.Substring(50, 1);
+            int resultInt = int.Parse(sub);
+            //act
+            bool valid = false;
+            if (resultInt >= 1 && resultInt <= 10)
+            {
+                valid = true;
+            }
+            // Assert
+            Assert.IsTrue(valid);
+
+
         }
     }
 }

@@ -23,18 +23,25 @@ namespace csc455_assignment2_pt2
                 //  Display menu and get user input for later on
                 menuChoice.displayMenu();
                 string userInput = Console.ReadLine();
-                Console.WriteLine("Input a string of your choice.");
-                string userString1 = Console.ReadLine();
-                Console.WriteLine("Input another string of your choice.");
-                string userString2 = Console.ReadLine();
+                string userString1 = "", userString2 = "";
 
-                //  Process the user's choice
-                string str = menuChoice.processChoice(userInput, userString1, userString2);
-                Console.WriteLine(str);
+                //Jacob edit: moving "enter string" prompts to only occur if the user chooses menu option 4
+                if (userInput == "4")
+                {
+                    Console.WriteLine("Input a string of your choice.");
+                    userString1 = Console.ReadLine();
+                    Console.WriteLine("Input another string of your choice.");
+                    userString2 = Console.ReadLine();
+                }
 
-                //  Give user the option to try again
-                Console.WriteLine("Would you like to try again? Y/N");
-                userInput = Console.ReadLine();
+
+                    //  Process the user's choice
+                    string str = menuChoice.processChoice(userInput, userString1, userString2);
+                    Console.WriteLine(str);
+
+                    //  Give user the option to try again
+                    Console.WriteLine("Would you like to try again? Y/N");
+                    userInput = Console.ReadLine();
                 
                 if(userInput == "N" || userInput == "n")
                 {
@@ -86,7 +93,7 @@ namespace csc455_assignment2_pt2
         }
 
         //  Displays a random integer based on the user's input
-        static string randomInt()
+        public static string randomInt()
         {
             Random randomNum = new Random();
             string str = "Here is a random integer number between 1 and 10: " + randomNum.Next(1, 11) + ".";
@@ -94,7 +101,7 @@ namespace csc455_assignment2_pt2
         }
 
         //  Displays today's date in short date string
-        static string displayShortDate()
+        public static string displayShortDate()
         {
             DateTime todayDate = DateTime.Now;
             string shortDate = todayDate.ToShortDateString();
@@ -130,6 +137,7 @@ namespace csc455_assignment2_pt2
         //  Performs a random string action
         static string randomStringAction(string userString, string userString2)
         {
+           
             StringActions performString = new StringActions();
 
             Random randomNum = new Random();
@@ -137,46 +145,48 @@ namespace csc455_assignment2_pt2
 
             string str = "";
 
-            //  If statements to perform a random action on a string the user inputs
-            if (randomAction == 1)
+            // Isaac: Change if statements to switch cases (to perform a random action on a string the user inputs)
+            switch (randomAction)
             {
-                str = "Your fist string in reverse is: " + performString.reverseString(userString) + ".";
-            }
-            else if (randomAction == 2)
-            {
-                str = "The length of your first string is: " + performString.getLength(userString) + ".";
-            }
-            else if (randomAction == 3)
-            {
-                str = "Half of your first string is: " + performString.getHalf(userString) + ".";
-            }
-            else if (randomAction == 4)
-            {
-                str = "Your first string in all uppercase values is: " + userString.ToUpper() + ".";
-            }
-            else if (randomAction == 5)
-            {
-                str = "If we replace any letter e with an _, your first string will look like: " + performString.replaceE(userString) + ".";
-            }
-            else if (randomAction == 6)
-            {
-                str = "The hash code of your first string is: " + userString.GetHashCode() + ".";
-            }
-            else if (randomAction == 7)
-            {
-                str = "Your first string in all lowercase values is: " + userString.ToLower() + ".";
-            }
-            else if (randomAction == 8)
-            {
-                str = "Your two strings together are: " + performString.concatenate(userString, userString2) + ".";
-            }
-            else if (randomAction == 9)
-            {
-                str = "You have " + performString.countWords(userString) + " word(s) in your first string.";
-            }
-            else if (randomAction == 10)
-            {
-                str = "You have " + performString.countSpaces(userString) + " spaces in your first string.";
+                case 1:
+                    str = "Your fist string in reverse is: " + performString.reverseString(userString) + ".";
+                    break;
+
+                case 2:
+                    str = "The length of your first string is: " + performString.getLength(userString) + ".";
+                    break;
+
+                case 3:
+                    str = "Half of your first string is: " + performString.getHalf(userString) + ".";
+                    break;
+
+                case 4:
+                    str = "Your first string in all uppercase values is: " + userString.ToUpper() + ".";
+                    break;
+
+                case 5:
+                    str = "If we replace any letter e with an _, your first string will look like: " + performString.replaceE(userString) + ".";
+                    break;
+
+                case 6:
+                    str = "The hash code of your first string is: " + userString.GetHashCode() + ".";
+                    break;
+
+                case 7:
+                    str = "Your first string in all lowercase values is: " + userString.ToLower() + ".";
+                    break;
+
+                case 8:
+                    str = "Your two strings together are: " + performString.concatenate(userString, userString2) + ".";
+                    break;
+
+                case 9:
+                    str = "You have " + performString.countWords(userString) + " word(s) in your first string.";
+                    break;
+
+                case 10:
+                    str = "You have " + performString.countSpaces(userString) + " spaces in your first string.";
+                    break;
             }
             
             return str;
